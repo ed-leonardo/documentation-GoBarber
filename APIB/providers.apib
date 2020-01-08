@@ -1,0 +1,47 @@
+# Group Providers
+## List [/providers]
+### List[GET]
+- Route to list all providers.
+- Authentication is <code><strong>required</strong></code>.
++ Request (application/json)
+
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		No Body
+		
++ Response 200 (application/json)
+
+	+ Body
+		[
+			{
+			 "id": 22,
+			 "name": "Guest",
+			 "email": "guest@test.com.br",
+			 "avatar_id": 1,
+			 "avatar": {
+				"url": "http://localhost:3333/files/db373e181740dd54db3ebc8bffd1cd46.png",
+				"name": "download.png",
+				"path": "db373e181740dd54db3ebc8bffd1cd46.png"
+			 }
+			},
+			{
+			 "id": 23,
+			 "name": "Test",
+			 "email": "test@mail.com.br",
+			 "avatar_id": 2,
+			 "avatar": {
+				"url": "http://localhost:3333/files/966605816089902dfeaefbe5bb410dfb.png",
+				"name": "profile.png",
+				"path": "966605816089902dfeaefbe5bb410dfb.png"
+			 }
+			}
+		]
+		
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}

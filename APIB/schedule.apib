@@ -1,0 +1,46 @@
+# Group Schedule
+## List [/schedule]		
+### List [GET]
+- Route to list a schedule of the day, of the logged user.
+- Authentication is <code><strong>required</strong></code>.
+- The day is sent by query.
+- User must be a <code><strong>provider</strong></code>.
+
++ Request (application/json)
+	
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		No Body
+			
++ Response 200 (application/json)
+
+	+ Body 
+		[
+			{
+			 "past": true,
+			 "cancelable": false,
+			 "id": 45,
+			 "date": "2020-01-06T22:00:00.000Z",
+			 "canceled_at": null,
+			 "createdAt": "2020-01-06T13:08:35.072Z",
+			 "updatedAt": "2020-01-06T13:08:35.072Z",
+			 "user_id": 2,
+			 "provider_id": 22
+		  }
+		]
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}
+		
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "User is not provider"
+		}

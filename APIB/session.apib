@@ -1,0 +1,66 @@
+# Group Sessions
+## Create [/sessions]
+### Create[POST]
+- Route to create a session.
+- User must be <code><strong>created before</strong></code>
++ Request (application/json)
+    
+	+ Body
+
+            [
+              {
+                "email": "guest@test.com.br",
+                "password": '123456789',
+              }
+			]
+			
+	+ Schema
+	
+		{
+		 "$schema": "https://json-schema.org/",
+		 "type": "object",
+		 "title":"Session",
+		 "description": "Schema for session",
+		 "properties": {
+		    "email": {
+				"description": "guest@mail.com",
+				"type": "string"
+			},
+			"password": {
+				"description": "1234",
+				"type": "string",
+				"minimum": 4,
+			},
+		 }
+		 "required": ["email", "password"]
+		}
+			
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+			 "user": {
+				"id": 22,
+				"name": "Test",
+				"email": "guest@test.com.br"
+			 },
+			 "token": 
+			 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImlhdCI6MTU3ODMxNDc0MywiZXhwIjoxNTc4OTE5NTQzfQ.vxghT8mPKfT2KdgutDYtyAwn66aVJabVtt7fpbIPr9U"
+			}
+		]
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "User not found"
+		}
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Password does not match"
+		}

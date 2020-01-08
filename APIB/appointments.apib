@@ -1,0 +1,163 @@
+# Group Appoitments
+## Create [/appoitments]
+### Create [POST]
+- Route to create a new appoitment.
+- Authentication is <code><strong>required</strong></code>.
+
++ Request (application/json)
+	
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		[
+			{
+			 "provider_id": 22,
+			 "date": "2020-01-06T19:50:00-03:00"
+			}
+		]
+		
+	+ Schema
+		{
+		 "$schema": "https://json-schema.org/",
+		 "type": "object",
+		 "title":"Appoitment",
+		 "description": "Schema for appoitment",
+		 "properties": {
+		    "provider_id": {
+				"description": "22",
+				"type": "number"
+			},
+			"date": {
+				"description": "2020-01-06T19:50:00-03:00",
+				"type": "date-time"
+			},
+		 }
+		 "required": ["provider_id", "date"]
+		}
+		
++ Response 200 (application/json)
+
+	+ Body 
+		[
+			{
+			 "past": false,
+			 "cancelable": true,
+			 "id": 45,
+			 "user_id": 22,
+			 "provider_id": 22,
+			 "date": "2020-01-06T22:00:00.000Z",
+			 "updatedAt": "2020-01-06T13:08:35.072Z",
+			 "createdAt": "2020-01-06T13:08:35.072Z",
+			 "canceled_at": null
+			}
+		]
+		
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}
+
+## List [/appoitments]		
+### List [GET]
+- Route to list all appoitments created by the logged user.
+- Authentication is <code><strong>required</strong></code>.
+- Route with pagination, sent by query.
+
++ Request(application/json)
+
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body
+		No Body
+		
++ Response 200 (application/json)
+
+	+ Body
+		[
+			{
+			 "past": true,
+			 "cancelable": false,
+			 "id": 44,
+			 "date": "2020-01-06T22:00:00.000Z",
+			 "provider": {
+				"id": 23,
+				"name": "Test",
+				"avatar": {
+					"url": 
+					"http://localhost:3333/files/db373e181740dd54db3ebc8bffd1cd46.png",
+					"id": 1,
+					"path": "db373e181740dd54db3ebc8bffd1cd46.png"
+					}
+				}
+			},
+			{
+			 "past": true,
+			 "cancelable": false,
+			 "id": 45,
+			 "date": "2020-01-06T22:00:00.000Z",
+			 "provider": {
+				"id": 22,
+				"name": "Guest",
+				"avatar": {
+					"url": 
+					"http://localhost:3333/files/db373e181740dd54db3ebc8bffd1cd46.png",
+					"id": 1,
+					"path": "db373e181740dd54db3ebc8bffd1cd46.png"
+					}
+				}
+			}
+		]
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}
+		
+## Delete [/appoitments/id]
+### Delete [DELETE]
+- Route to cancel an appoitment.
+- Authentication is <code><strong>required</strong></code>.
+- User cannot delete <code><strong>appoitments of the other users</strong></code>.
+- The appointment can only be canceled <code><strong>2 hours in advance</strong></code>.
+
++ Request(application/json)
+
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body
+		No Body
+		
++ Response 200 (application/json)
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "You don't have permission to cancel this appoitment"
+		}
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "You can only cancel appoitments 2 hours in advance"
+		}
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}
+		
+
+
+
+

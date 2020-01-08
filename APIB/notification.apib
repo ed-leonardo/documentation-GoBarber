@@ -1,0 +1,88 @@
+# Group Notifications
+## List [/notifications]		
+### List [GET]
+- Route to list all notifications of the logged user.
+- Authentication is <code><strong>required</strong></code>.
+- User must be a <code><strong>provider</strong></code>.
+- User can read <code><strong>only</strong></code> his own notifications
+
++ Request (application/json)
+	
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		No Body
+		
++ Response 200 (application/json)
+
+	+ Body
+		[
+			{
+			 "read": false,
+			 "_id": "5e133153956d3c42460d925d",
+			 "content": "Novo agendamento de Guest para dia 06 de janeiro, às 20:00h",
+			 "user": 22,
+			 "createdAt": "2020-01-06T13:08:35.176Z",
+			 "updatedAt": "2020-01-06T13:08:35.176Z",
+			 "__v": 0
+			}
+		]
+			
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}
+		
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Only provider can load notifications"
+		}
+
+## Update [/notifications/id]		
+### Update [PUT]
+- Route to read a notifications of the logged user.
+- Authentication is <code><strong>required</strong></code>.
+- User must be a <code><strong>provider</strong></code>.
+- User cannot mark as read notifications of the other <code><strong>providers</strong></code>
+
++ Request (application/json)
+	
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		No Body
+		
++ Response 200 (application/json)
+
+	+ Body
+		[
+			{
+			 "read": true,
+			 "_id": "5e133153956d3c42460d925d",
+			 "content": "Novo agendamento de Guest para dia 06 de janeiro, às 20:00h",
+			 "user": 22,
+			 "createdAt": "2020-01-06T13:08:35.176Z",
+			 "updatedAt": "2020-01-06T13:08:35.176Z",
+			 "__v": 0
+			}
+		]
+
++ Response 401 (application/json)
+
+	+ Body 
+			{
+			 "error": "Token not provided"
+			}
+
++ Response 401 (application/json)
+
+	+ Body 
+			{
+			 "error": "You can't read notifications of the others providers"
+			}

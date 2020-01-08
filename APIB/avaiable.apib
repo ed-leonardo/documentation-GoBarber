@@ -1,0 +1,88 @@
+# Group Avaiable
+## List [/providers/id/avaiable]		
+### List [GET]
+- Route to list available times, during the day.
+- Authentication is <code><strong>required</strong></code>.
+- The day is sent by query.
+- Provider Id is sent by URL.
+
++ Request (application/json)
+	
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		No Body
+		
++ Response 200 (application/json)
+
+	+ Body 
+		[
+			{
+			 "time": "08:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": false
+			},
+			{
+			 "time": "09:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "10:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "11:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "12:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "13:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "14:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "15:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "16:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "17:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "18:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			},
+			{
+			 "time": "19:00",
+			 "value": "2020-01-06-T08:00:00-03:00",
+			 "avaiable": true
+			}
+		]
+		
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}

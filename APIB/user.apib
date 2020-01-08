@@ -1,0 +1,91 @@
+# Group Users
+## Create [/users]
+### Create[POST]
+- Everbody can create user.
+- Authentication <code><strong>is not required</strong></code>.
+- The user is <code><strong>not provider</strong></code>, for default.
+- Cannot create a user with a <code><strong>registered email</strong></code>.
++ Request (application/json)
+    
+	+ Body
+
+            [
+              {
+                "name": "Guest",
+                "email": "guest@test.com.br",
+                "password": '123456789',
+              }
+			]
+			
+
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+			 "id": 22,
+			 "name": "Guest",
+			 "email": "guest@test.com.br",
+			 "provider": false
+			}
+		]
+		
++ Response 400 (application/json)
+
+	+ Body
+	{
+	 "error": "User already exists"
+	}
+	
++ Response 400 (application/json)
+
+	+ Body 
+	{
+	 "error": "Maybe some field is wrong"
+	}
+
+## Update [/users]		
+### Update[PUT]
+- Authentication is <code><strong>required</strong></code>.
+- User can update <code><strong>only</strong></code> his own user
+- Can be associate an image for your own avatar.
+
++ Request (application/json)
+
+	+ Headers
+				Authentication: Bearer Token
+				
+	+ Body
+	
+		[
+            {
+			 "name": "Guest",
+			 "email": "guest@test.com.br",
+			 "oldPassword": "123456789",
+			 "password": "123456",
+			 "confirmPassword": "123456",
+			 "avatar_id": 1,
+			 "provider": true
+			}
+		]
+	
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+			 "id": 22,
+			 "name": "Guest",
+			 "email": "guest@test.com.br",
+			 "provider": true
+			}
+		]
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}

@@ -1,0 +1,35 @@
+# Group Files
+## Create [/files]
+### Create[POST]
+- Route to send images, for user avatar.
+- Authentication is <code><strong>required</strong></code>.
++ Request (multipart/form)
+
+	+ Headers
+			Authentication: Bearer Token
+			
+	+ Body 
+		{		                      
+		 "file": profile.png
+		}	
++ Response 200 (application/json)
+
+	+ Body
+	
+		[
+			{
+			 "url": "http://localhost:3333/files/966605816089902dfeaefbe5bb410dfb.png",
+			 "id": 2,
+			 "name": "profile.png",
+			 "path": "966605816089902dfeaefbe5bb410dfb.png",
+			 "updatedAt": "2020-01-06T16:50:11.652Z",
+			 "createdAt": "2020-01-06T16:50:11.652Z"
+			}
+		]
+
++ Response 401 (application/json)
+
+	+ Body 
+		{
+		 "error": "Token not provided"
+		}
